@@ -7,25 +7,15 @@ public static class NPlus2
 
     public static int[] Missing2Numbers()
     {
-        int[] temp = new int[N + N + 2];
-        int cnt = 0;
-
-        for(int i = 0; i < A.Length; i++)
-        {
-            temp[cnt] = A[i];
-            cnt++;
-        }
-
-        for(int i=1; i<=(A.Length+2); i++)
-        {
-            temp[cnt] = i;
-            cnt++;
-        }
-
         int XOR = 0;
-        for(int i=0; i<temp.Length; i++)
+        for(int i=0; i<A.Length; i++)
         {
-            XOR = XOR ^ temp[i];
+            XOR = XOR ^ A[i];
+        }
+
+        for(int i=1; i<=N+2; i++)
+        {
+            XOR = XOR ^ i;
         }
 
         int pos = -1;
@@ -38,10 +28,16 @@ public static class NPlus2
         }
 
         int X = 0, Y = 0;
-        for(int i=0; i<temp.Length; i++)
+        for(int i=0; i<A.Length; i++)
         {
-            if ((temp[i] & (1 << pos)) > 0) X = X ^ temp[i];
-            else Y = Y ^ temp[i];
+            if ((A[i] & (1 << pos)) > 0) X = X ^ A[i];
+            else Y = Y ^ A[i];
+        }
+
+        for (int i = 1; i <=N+2; i++)
+        {
+            if ((i & (1 << pos)) > 0) X = X ^ i;
+            else Y = Y ^ i;
         }
 
         return new int[2] { X, Y };
