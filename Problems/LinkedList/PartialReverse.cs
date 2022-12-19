@@ -4,8 +4,8 @@ public static class PartialReverse
 {
     public static ListNode ReverseList(ListNode A, int B)
     {
-        ListNode temp = A, cut = null, curr = A;
-
+        ListNode join = null, curr = A;
+        
         while (curr != null)
         {
             int cnt = 1;
@@ -18,10 +18,10 @@ public static class PartialReverse
                 curr = nxt;
                 cnt++;
             }
-            if (cut == null) cut = prev;
+            if (join == null) join = prev;
             else
             {
-                temp = cut;
+                ListNode temp = join;
                 while (temp.next != null)
                 {
                     temp = temp.next;
@@ -29,7 +29,7 @@ public static class PartialReverse
                 temp.next = prev;
             }
         }
-        return cut;
+        return join;
     }
 }
 
