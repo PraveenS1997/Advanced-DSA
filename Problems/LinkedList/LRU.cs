@@ -62,7 +62,7 @@
     {
         if (del == _head)
         {
-            if (_hm.Count >= 2)
+            if (_head.next != null)
             {
                 _head = _head.next;
                 _head.prev = null;
