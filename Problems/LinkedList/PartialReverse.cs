@@ -2,6 +2,66 @@
 
 public static class PartialReverse
 {
+    public static ListNode DeleteDuplicates(ListNode A)
+    {
+        ListNode prev = null, curr = A;
+        while (curr != null)
+        {
+            if (prev != null && curr.val == prev.val)
+            {
+                prev.next = null;
+                curr = curr.next;
+            }
+            else
+            {
+                if(prev == null) prev = curr;
+                else
+                {
+                    prev.next = curr;
+                    prev = curr;
+                }
+                curr = curr.next;
+            }
+        }
+
+        return A;
+    }
+    public static ListNode ReverseBetween(ListNode A, int B, int C)
+    {
+        ListNode before = null, prev = null, curr = A;
+        for (int i = 1; i <= C; i++)
+        {
+            if (i < B)
+            {
+                before = curr;
+                curr = curr.next;
+                continue;
+            }
+            ListNode nxt = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = nxt;
+        }
+
+        ListNode temp;
+        if (B != 1)
+        {
+            before.next = prev;
+            temp = before;
+        }
+        else
+        {
+            A = prev;
+            temp = A;
+        }
+
+        while (temp.next != null)
+        {
+            temp = temp.next;
+        }
+        temp.next = curr;
+        return A;
+    }
     public static ListNode ReverseList(ListNode A, int B)
     {
         ListNode join = null, curr = A;
